@@ -25,6 +25,8 @@ class GoogleAuthenticatorComponent
 
     public $methodGetUserName;
 
+    public $dataCryptKey = 'cryptKeyGoogleAuth';
+
     private $_authenticator;
 
     /**
@@ -129,6 +131,19 @@ class GoogleAuthenticatorComponent
     public function getUserGoogleAuthStatus($user_id)
     {
         return $this->getUserGoogleAuthHandler($user_id)->getUserAuthStatus();
+    }
+
+    public function getUserOtpCheckHash($user_id)
+    {
+        $secret = $this->getUserGoogleAuthHandler($user_id)->getCurrentSecret();
+        $string = md5($this->dataCryptKey . $secret . $user_id);
+
+        return $string;
+    }
+
+    public function validateUserHash($user_id, $hash)
+    {
+        return $hash === $this->getUserOtpCheckHash($user_id);
     }
 
     /**
