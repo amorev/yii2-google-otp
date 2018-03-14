@@ -146,6 +146,11 @@ class GoogleAuthenticatorComponent
         return $hash === $this->getUserOtpCheckHash($user_id);
     }
 
+    public function getCode($secret, $timeSlice = null)
+    {
+        return $this->getAuthenticator()->getCode($secret, $timeSlice);
+    }
+
     /**
      * @return GoogleAuthenticatorLib
      */
