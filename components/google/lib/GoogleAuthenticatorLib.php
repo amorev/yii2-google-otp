@@ -101,8 +101,8 @@ class GoogleAuthenticatorLib
      */
     public function getQRCodeGoogleUrl($name, $secret, $title = NULL, $params = array())
     {
-        $width = !empty($params['width']) && (int)$params['width'] > 0 ? (int)$params['width'] : 200;
-        $height = !empty($params['height']) && (int)$params['height'] > 0 ? (int)$params['height'] : 200;
+        $width = !empty($params['width']) && (int)$params['width'] > 0 ? (int)$params['width'] : 180;
+        $height = !empty($params['height']) && (int)$params['height'] > 0 ? (int)$params['height'] : 180;
         $level = !empty($params['level']) && array_search($params['level'], array('L',
             'M',
             'Q',
